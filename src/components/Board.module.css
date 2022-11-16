@@ -1,0 +1,49 @@
+#boardContainer {
+    padding: 5px;
+    boarder: none;
+    width: 50%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+
+#boardContainer>button {
+    height: 100px;
+    width: 33%px;
+}
+
+#boardContainer :nth-child(1) {
+    border-style: none solid solid none;
+}
+
+#boardContainer :nth-child(2) {
+    border-style: none solid solid solid;
+}
+
+#boardContainer :nth-child(3) {
+    border-style: none none solid solid;
+}
+
+#boardContainer :nth-child(4) {
+    border-style: solid solid solid none;
+}
+
+#boardContainer :nth-child(5) {
+    border-style: solid;
+}
+
+#boardContainer :nth-child(6) {
+    border-style: solid none solid solid;
+}
+
+#boardContainer :nth-child(7) {
+    border-style: solid solid none none;
+}
+
+#boardContainer :nth-child(8) {
+    border-style: solid solid none solid;
+}
+
+#boardContainer :nth-child(9) {
+    border-style: solid none none solid;
+}

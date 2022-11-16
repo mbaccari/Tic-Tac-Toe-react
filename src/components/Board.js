@@ -1,28 +1,54 @@
-import { useState, setState } from 'react'
+import React, { useState, useEffect } from 'react'
+import Score from './Score';
+
+import styles from './Board.module.css'
 
 const winGame = require('../winLogic');
 
-function Board({ tiles }) {
-
-    
+function Board({ setScore }) {
 
     const [ turn, setTurn ] = useState(0);
 
     const [ status, setStatus ] =useState(true)
 
-    const [ boxes, setBox ] = useState([
-        {value: ' ', x: 1, y: 1, num: 1}, 
-        {value: ' ', x: 1, y: 2, num: 2},
-        {value: ' ', x: 1, y: 3, num: 3}, 
-        {value: ' ', x: 2, y: 1, num: 4}, 
-        {value: ' ', x: 2, y: 2, num: 5}, 
-        {value: ' ', x: 2, y: 3, num: 6}, 
-        {value: ' ', x: 3, y: 1, num: 7}, 
-        {value: ' ', x: 3, y: 2, num: 8}, 
-        {value: ' ', x: 3, y: 3, num: 9} ]
+    const [ boxes, setBox ] = useState([]
     );
 
-    if(turn > 9) {
+    // Function that runs when a new game is reset or created
+    const newGame = () => {
+      // Clear box before reassigning them
+      setBox([])
+
+      // Set new game as true
+      setStatus(true);
+
+      // Set turn to the first turn
+      setTurn(0);
+
+      // Loop to create all boxes for the game
+      for (let x = 1, y = 1, i = 1; i < 10; i++, y++) {
+        if (y === 3) {
+          const box = {value:' ', x:x, y:y, num:i}
+          setBox( boxes => [...boxes, box]);
+          if(x === 3 && y === 3) break;
+
+          // If y gets to 3, reset y to 0 and up x to move to next row
+          y=0;
+          x++;
+        } else {
+          setBox( boxes => [...boxes, {value:' ', x:x, y:y, num:i}]);
+        }
+        
+      }
+    }
+
+    useEffect(() => {
+      // Upon page loading, set all boxes
+      newGame();
+    }, []);
+
+    if(turn >= 9) {
+      newGame();
         return (alert('game over'))
     }
 
@@ -55,18 +81,30 @@ function Board({ tiles }) {
         if (winner) {
             setStatus(false)
             console.log('Game won')
+
             return (alert(winner + ' wins'))
         }
       };
 
     return (
-        <div className='bg-secondary container row'>
+      <>
+        <div id={styles.boardContainer} className='bg-secondary'>
+            
             { boxes.map((box, index) => (
-                <button style={{ height: 50, width: 50}} className='col-4 border margin-1' onClick={ () => { updateState(index)} }key={ box.num }>
+                <button onClick={ () => { updateState(index)} }key={ box.num }>
                     {boxes[index].value}
                 </button>
             ))}
+            
         </div >
+        {status 
+            ? 
+              <button onClick={newGame}>Reset</button>
+            :
+              <button onClick={newGame}>New game</button>
+        }
+      </>
+        
     )
 }
 
