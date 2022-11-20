@@ -76,8 +76,7 @@ function Board({ setScore }) {
         });
     
         setBox(newState);
-        const winner = winGame(boxes, index, boxes[index].x, boxes[index].y, newVal)
-        console.log(winner)
+        const winner = winGame(boxes, index, newState[index].x, newState[index].y, newVal)
         if (winner) {
             setStatus(false)
             console.log('Game won')

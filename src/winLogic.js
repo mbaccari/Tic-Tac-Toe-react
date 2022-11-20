@@ -3,34 +3,51 @@ const checkWinner = (boxes, index, x, y, newVal) => {
     let checkY = [];
     let checkD1 = [];
     let checkD2 = [];
-    const arrays = [checkX, checkY, checkD1, checkD2]
+    const arrays = [{X: checkX}, {Y: checkY}, {D1: checkD1}, {D2: checkD2}]
 
     for(let i = 0; i < boxes.length; i++) {
+        console.log(`(${boxes[i].x}, ${boxes[i].y}) - ${i}`);
         if(boxes[i].x === x && boxes[i].y === y) {
-            arrays.forEach((e) => e.push(newVal))
-        } else if(boxes[i].x === x) {
-            checkX.push(boxes[i].value)
-        } else if(boxes[i].y === y) {
-            checkY.push(boxes[i].value)
-        }
-        if(boxes[i].value !== ' ') {
             if(i === 2 || i === 4 || i === 6) {
-                checkD2.push(boxes[i].value)
+                arrays[3].D2.push(newVal)
             }
-            if(i === 0 || i === 4 || i === 9) {
-                checkD1.push(boxes[i].value)
-                console.log(checkD1)
+            arrays[0].X.push(newVal);
+
+            if(i === 0 || i === 4 || i === 8) {
+                arrays[2].D1.push(newVal);
             }
+            arrays[1].Y.push(newVal);
+        } else if(boxes[i].x === x) {
+            arrays[0].X.push(boxes[i].value)
+
+        } else if(boxes[i].y === y) {
+            arrays[1].Y.push(boxes[i].value)
+
+        } else if(i===4) {
+            arrays[3].D2.push(boxes[i].value)
+            arrays[2].D1.push(boxes[i].value)
+        } else if(i === 2 || i === 4 || i === 6) {
+            arrays[3].D2.push(boxes[i].value)
+
+        } else if(i === 0 || i === 4 || i === 8) {
+            arrays[2].D1.push(boxes[i].value)
         }
+        
     }
     let winner;
-    arrays.forEach((p) => {
-        if(p.every(e => e === p[0]) && p.length === 3) {
-            console.log(p[0] + ': boogaloo')
-            winner = p[0]
-        };
-    })
+    arrays.map((p) => {
+        const checkW = (object) => {
+            if(object.every(e => e === object[0]) && object.length === 3) {
+                winner = object[0]
+            };
+        }   
 
+        if(p.X) checkW(p.X);
+        if(p.Y) checkW(p.Y);
+        if(p.D1) checkW(p.D1);
+        if(p.D2) checkW(p.D2)
+    })
+    console.log(winner)
     return winner
 }
 
