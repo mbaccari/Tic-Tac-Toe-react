@@ -1,0 +1,40 @@
+
+#container {
+    display: flex;
+}
+
+#name1 {
+    box-sizing: border-box;
+    border-style: none solid solid none;
+    border-width: 2px;
+    border-color: black;
+}
+
+#name2 {
+    box-sizing: border-box;
+    border-style: none none solid solid;
+    border-width: 2px;
+    border-color: black;
+}
+
+#edit {
+    background: none;
+    border: none;
+}
+
+#edit:hover {
+    cursor: pointer;
+    color: grey;
+}
+
+#score1 {
+    text-align: center;
+    border-right: solid 2px black;
+    height: 50px;
+}
+
+#score2 {
+    text-align: center;
+    border-left: solid 2px black;
+    height: 50px;
+}

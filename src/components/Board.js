@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 import styles from './Board.module.css'
+import Score from './Score';
 
 const winGame = require('../winLogic');
 
@@ -95,25 +96,24 @@ function Board() {
 
     return (
       <>
-        <div>
-          <p>{p1Score}</p>
-          <p>{p2Score}</p>
-        </div>
-        <div id={styles.boardContainer} className='bg-secondary'>
-            
-            { boxes.map((box, index) => (
-                <button onClick={ () => { updateState(index)} }key={ box.num }>
-                    {boxes[index].value}
-                </button>
-            ))}
-            
-        </div >
-        {status 
+        <div id={styles.main}>
+          <div id={styles.boardContainer} className='bg-secondary'>
+              
+              { boxes.map((box, index) => (
+                  <button onClick={ () => { updateState(index)} }key={ box.num }>
+                      {boxes[index].value}
+                  </button>
+              ))}
+              {status 
             ? 
-              <button onClick={newGame}>Reset</button>
+              ''
             :
-              <button onClick={newGame}>New game</button>
-        }
+              <i onClick={newGame}>new game</i>
+          }
+          </div >
+          <Score score1={p1Score} score2={p2Score} />
+
+        </div>
       </>
         
     )

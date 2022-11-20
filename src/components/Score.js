@@ -1,9 +1,11 @@
 import React, { useState }  from 'react';
 
+import styles from './Score.module.css'
+
 
 const Score = ({ score1, score2 }) => {
 
-    const [ names, setNames ] = useState({ p1:'', p2:'' });
+    const [ names, setNames ] = useState({ p1:'Player 1', p2:'Player 2' });
 
     const [ editOne, setEditOne ] = useState(true)
 
@@ -21,15 +23,14 @@ const Score = ({ score1, score2 }) => {
 
 
     return (
-        <div>
+        <div id={styles.container}>
             <div>
-                <h1>Player 1</h1> <p>{score1}</p>
-                <div>{names.p1
+                {names.p1
                 ? 
                     <>
-                    {names.p1}
-                    <button onClick={handleEdit} name='p1'>Change name</button>
-                    <p>{score1}</p>
+                        <div id={styles.name1}>{names.p1} <button id={styles.edit} onClick={handleEdit} className='bi bi-pencil-square' name='p2'></button></div>
+                        
+                        <p id={styles.score1}>{score1}</p>
                     </>
                 :
                 <form onSubmit={handleEnter}>
@@ -39,19 +40,19 @@ const Score = ({ score1, score2 }) => {
                         id='p1'
                         required
                     />
-                    <button type='submit'>Save</button>
+                    <button type='submit'>Set</button>
                 </form>
                 }
-                </div>
             </div>
             <div>
-                <h1>Player 2</h1> <p>{score2}</p>
-                <div>{names.p2
+                {names.p2
                 ? 
                     <>
-                        {names.p2}
-                        <button onClick={handleEdit} name='p2'>Change name</button>
-                        <p>{score2}</p>
+                        <div id={styles.name2}>
+                            {names.p2}<button id={styles.edit} onClick={handleEdit} className='bi bi-pencil-square' name='p2'></button>   
+                        </div>
+                        
+                        <p id={styles.score2}>{score2}</p>
                     </>
                 :
                 <form onSubmit={handleEnter}>
@@ -61,10 +62,9 @@ const Score = ({ score1, score2 }) => {
                         id='p2'
                         required
                     />
-                    <button type='submit'>Save</button>
+                    <button type='submit'>Set</button>
                 </form>
                 }
-                </div>
             </div>
         </div>
     )
