@@ -83,10 +83,9 @@ function Board() {
         const winner = winGame(boxes, index, newState[index].x, newState[index].y, newVal)
         if (winner) {
             setStatus(false)
-            console.log('Game won')
             if(winner ==='X') {
               setP1Score( p1Score + 1)
-            } else if(winner === 'Y') {
+            } else if(winner === 'O') {
               setP2Score( p2Score + 1)
             }
              
@@ -112,7 +111,6 @@ function Board() {
           }
           </div >
           <Score score1={p1Score} score2={p2Score} />
-
         </div>
       </>
         
