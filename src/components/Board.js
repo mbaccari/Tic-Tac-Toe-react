@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react'
-import Score from './Score';
 
 import styles from './Board.module.css'
 
 const winGame = require('../winLogic');
 
-function Board({ setScore }) {
+function Board() {
 
     const [ turn, setTurn ] = useState(0);
+
+    const [ p1Score, setP1Score ] = useState(0);
+    const [ p2Score, setP2Score ] = useState(0)
+
 
     const [ status, setStatus ] =useState(true)
 
@@ -80,13 +83,22 @@ function Board({ setScore }) {
         if (winner) {
             setStatus(false)
             console.log('Game won')
-
+            if(winner ==='X') {
+              setP1Score( p1Score + 1)
+            } else if(winner === 'Y') {
+              setP2Score( p2Score + 1)
+            }
+             
             return (alert(winner + ' wins'))
         }
       };
 
     return (
       <>
+        <div>
+          <p>{p1Score}</p>
+          <p>{p2Score}</p>
+        </div>
         <div id={styles.boardContainer} className='bg-secondary'>
             
             { boxes.map((box, index) => (
