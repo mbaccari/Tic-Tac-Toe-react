@@ -28,7 +28,7 @@ const Score = ({ score1, score2 }) => {
                 {names.p1
                 ? 
                     <>
-                        <div id={styles.name1}>{names.p1} <button id={styles.edit} onClick={handleEdit} className='bi bi-pencil-square' name='p2'></button></div>
+                        <div id={styles.name1}>{names.p1} <button id={styles.edit} onClick={handleEdit} className='bi bi-pencil-square' name='p1'></button></div>
                         
                         <p id={styles.score1}>{score1}</p>
                     </>
