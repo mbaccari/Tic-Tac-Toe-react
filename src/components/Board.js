@@ -107,7 +107,7 @@ function Board() {
             ? 
               ''
             :
-              <i onClick={newGame}>new game</i>
+              <i id={styles.new} onClick={newGame}>new game</i>
           }
           </div >
           <Score score1={p1Score} score2={p2Score} />

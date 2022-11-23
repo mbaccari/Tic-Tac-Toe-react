@@ -60,3 +60,7 @@
 #boardContainer :nth-child(9) {
     border-style: solid none none solid;
 }
+
+#new:hover {
+    cursor: pointer;
+}

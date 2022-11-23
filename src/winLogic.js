@@ -35,7 +35,7 @@ const checkWinner = (boxes, index, x, y, newVal) => {
         
     }
     let winner;
-    arrays.map((p) => {
+    arrays.forEach((p) => {
         const checkW = (object) => {
             if(object.every(e => e === object[0]) && object.length === 3) {
                 winner = object[0]

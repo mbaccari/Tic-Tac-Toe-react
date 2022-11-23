@@ -8,6 +8,7 @@
     border-style: none solid solid none;
     border-width: 2px;
     border-color: black;
+    height: 35px;
 }
 
 #name2 {
@@ -15,6 +16,7 @@
     border-style: none none solid solid;
     border-width: 2px;
     border-color: black;
+    height: 35px;
 }
 
 #edit {
@@ -27,14 +29,43 @@
     color: grey;
 }
 
+#nameChangeForm {
+    border: solid 2px black;
+    border-radius: 15px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding: 2px;
+    box-sizing: border-box;
+}
+
+#nameChangeInput {
+    border: none;
+    width: 100px;
+    background: none;
+}
+
+#nameChangeInput:focus {
+    outline: none
+}
+
+#nameChangeInputButton {
+    border: none;
+    background: none;
+}
+
 #score1 {
     text-align: center;
-    border-right: solid 2px black;
+    border-style: solid solid none none;
+    border-width: 2px;
+    border-color: black;
     height: 50px;
 }
 
 #score2 {
     text-align: center;
-    border-left: solid 2px black;
+    border-style: solid none none solid;
+    border-width: 2px;
+    border-color: black;
     height: 50px;
 }
